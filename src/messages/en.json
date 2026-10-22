@@ -1,0 +1,101 @@
+{
+  "meta": {
+    "title": "Makeup for women: lipstick, blush, eyeliner",
+    "description": "Makeup made for Thai women. Shades that flatter Asian skin and last through hot days."
+  },
+  "announcement": "Free delivery from ฿590 · Pay with PromptPay, TrueMoney, LINE Pay",
+  "nav": {
+    "menu": "Menu",
+    "close": "Close",
+    "search": "Search",
+    "wishlist": "Wishlist",
+    "bag": "Bag",
+    "account": "My account",
+    "shadeFinder": "Shade finder",
+    "gifts": "Gift sets",
+    "journal": "Beauty journal",
+    "about": "Our story",
+    "switchLanguage": "ภาษาไทย"
+  },
+  "categories": {
+    "lips": "Lips",
+    "face": "Face",
+    "eyes": "Eyes",
+    "lashes": "Lashes",
+    "sets": "Makeup sets"
+  },
+  "badges": {
+    "bestseller": "Bestseller",
+    "new": "New",
+    "limited": "Limited"
+  },
+  "home": {
+    "heroEyebrow": "New collection",
+    "heroTitle": "Soft beauty,\nmade for you",
+    "heroText": "Lipstick, blush and eyeliner designed for Thai skin. Natural colour that lasts, even on the hottest days.",
+    "heroCta": "Shop the collection",
+    "heroSecondary": "Find your shade",
+    "categoriesEyebrow": "Shop by category",
+    "categoriesTitle": "Find what feels like you",
+    "bestsellersEyebrow": "Bestsellers",
+    "bestsellersTitle": "The ones everyone loves",
+    "viewAll": "View all",
+    "shadeEyebrow": "Shade finder",
+    "shadeTitle": "The right shade for your skin",
+    "shadeText": "Answer three quick questions about your skin tone and undertone, and we'll match you with the shades that suit you best.",
+    "shadeCta": "Start the shade finder",
+    "storyEyebrow": "Our story",
+    "storyQuote": "We believe good makeup should make you feel confident being exactly who you are.",
+    "storyText": "Every shade is tested on a range of Thai skin tones, and every formula is tested in hot, humid weather, so it stays beautiful all day.",
+    "storyCta": "Read our story",
+    "journalEyebrow": "Beauty journal",
+    "journalTitle": "Tips and looks",
+    "journal": [
+      { "title": "A waterproof Songkran look that lasts all day", "tag": "How-to" },
+      { "title": "Choosing a lip shade for your undertone", "tag": "Tips" },
+      { "title": "An easy winged liner in three steps", "tag": "How-to" }
+    ],
+    "reviewsEyebrow": "Reviews",
+    "reviewsTitle": "From women who wear it",
+    "reviews": [
+      { "quote": "A matte lipstick that really doesn't dry my lips. On in the morning, still there in the evening.", "name": "Praew", "city": "Bangkok" },
+      { "quote": "The cushion is so light and doesn't get oily in the heat. The shade matches perfectly.", "name": "Mind", "city": "Chiang Mai" },
+      { "quote": "The eyeliner really is waterproof. A whole day of Songkran and no smudging.", "name": "Fah", "city": "Phuket" }
+    ],
+    "lineEyebrow": "LINE Official",
+    "lineTitle": "Add us on LINE for 10% off",
+    "lineText": "Get offers first, track your orders and ask our team about shades, every day.",
+    "lineCta": "Add friend"
+  },
+  "product": {
+    "shade": "Shade",
+    "addToBag": "Add to bag",
+    "delivery": "Delivered in 1–3 working days across Thailand",
+    "freeShipping": "Free delivery from ฿590",
+    "fda": "Thai FDA notification no.",
+    "fdaPending": "Pending notification",
+    "chatLine": "Ask about shades on LINE",
+    "shades": "shades"
+  },
+  "category": {
+    "products": "products"
+  },
+  "footer": {
+    "tagline": "Makeup made for Thai women",
+    "shop": "Shop",
+    "help": "Help",
+    "shipping": "Shipping",
+    "returns": "Returns",
+    "payment": "Payment methods",
+    "faq": "FAQ",
+    "contact": "Contact us",
+    "privacy": "Privacy policy",
+    "terms": "Terms of use",
+    "cookies": "Cookie settings",
+    "payWith": "Pay with",
+    "rights": "All rights reserved"
+  },
+  "line": {
+    "chat": "Chat with us on LINE"
+  }
+}

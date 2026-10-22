@@ -1,0 +1,25 @@
+/* Design tokens. Source: project-info/design/design-direction.md
+   Every value here becomes a Tailwind utility (e.g. bg-blush, text-rosewood, rounded-card). */
+
+@theme {
+  --color-ivory: #fbf7f4;
+  --color-blush: #f3dcd6;
+  --color-nude: #e4c3b5;
+  --color-rose: #c97b84;
+  --color-champagne: #c9a66b;
+  --color-rosewood: #5a2a35;
+  --color-ink: #2b1e22;
+  --color-line: #06c755;
+
+  --font-display: var(--font-cormorant), var(--font-trirong), "Times New Roman", serif;
+  --font-sans: var(--font-dm-sans), var(--font-plex-thai), system-ui, sans-serif;
+
+  --radius-card: 1.75rem;
+  --radius-card-inner: calc(1.75rem - 0.375rem);
+
+  --shadow-soft: 0 24px 60px -32px rgb(90 42 53 / 0.28);
+  --shadow-lift: 0 32px 80px -36px rgb(90 42 53 / 0.38);
+
+  --ease-silk: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-press: cubic-bezier(0.32, 0.72, 0, 1);
+}

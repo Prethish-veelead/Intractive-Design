@@ -1,0 +1,57 @@
+@import "tailwindcss";
+@import "../styles/tokens.css";
+
+html {
+  background: var(--color-ivory);
+  color: var(--color-ink);
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  font-family: var(--font-sans);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Thai: tone marks and vowels sit above and below the line, so give them room.
+   Never track or uppercase Thai (rules/thailand-localization.md). */
+:lang(th) body {
+  line-height: 1.75;
+}
+:lang(th) :is(h1, h2, h3, h4) {
+  line-height: 1.35;
+}
+/* Cormorant defaults to old-style figures; prices and "SPF50+" read better as lining. */
+.font-display {
+  font-variant-numeric: lining-nums;
+}
+
+.eyebrow {
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+}
+:lang(th) .eyebrow {
+  text-transform: none;
+  letter-spacing: 0;
+}
+
+/* Paper grain: fixed and non-interactive so it never repaints while scrolling. */
+.grain {
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  pointer-events: none;
+  opacity: 0.035;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  ::before,
+  ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
