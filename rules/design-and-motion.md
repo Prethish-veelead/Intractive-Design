@@ -12,6 +12,9 @@ Source of truth for look and feel: [design-direction.md](../project-info/design/
 6. No generic templates: no stock "hero + three cards" layout, no default Tailwind shadows, no emoji as icons. Run the `design-taste-frontend` or `high-end-visual-design` skill check before a page is called done.
 7. Every product image has width and height set (no layout shift) and descriptive alt text in the page's language.
 8. Shades are shown on real skin, not just as flat color dots.
+9. Photos go in `public/images/` at the paths in [image-generation-brief.md](../project-info/design/image-generation-brief.md);
+   code finds them with `findImage()` (`src/lib/images.ts`). Never hard-code an image path in a component.
+   Rebuild after adding images (lookups happen at build time).
 
 ## Motion
 

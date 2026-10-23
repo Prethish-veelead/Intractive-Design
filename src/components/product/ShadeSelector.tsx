@@ -2,10 +2,10 @@
 
 import { useRef, useState, ViewTransition } from "react";
 import { Check } from "@phosphor-icons/react";
-import type { Product } from "@/lib/catalog";
+import type { Product, Shade } from "@/lib/catalog";
 import { addToBag } from "@/lib/bag";
 import { duration, ease, gsap, motionOk, useGSAP } from "@/lib/motion";
-import { ProductArt } from "@/components/ui/ProductArt";
+import { ProductVisual } from "@/components/ui/ProductVisual";
 import { ShadeSwatch } from "@/components/ui/ShadeSwatch";
 import { CompareSlider } from "@/components/motion/CompareSlider";
 import { SwatchStroke, TextureView } from "@/components/ui/ShadeViews";
@@ -31,8 +31,19 @@ type View = "product" | "swatch" | "texture";
 const views: View[] = ["product", "swatch", "texture"];
 
 // Gallery "photos" drawn in the active shade until the photoshoot (task-plan 3.4).
-function GalleryImage({ view, product, hex, thumb = false }: { view: View; product: Product; hex: string; thumb?: boolean }) {
-  if (view === "product") return <ProductArt kind={product.kind} color={hex} className={`absolute inset-0 h-full w-full ${thumb ? "p-2" : "p-10"}`} />;
+function GalleryImage({ view, product, shade, thumb = false }: { view: View; product: Product; shade: Shade; thumb?: boolean }) {
+  const hex = shade.hex;
+  if (view === "product")
+    return (
+      <ProductVisual
+        kind={product.kind}
+        shade={shade}
+        alt={thumb ? "" : `${product.name} ${shade.name}`}
+        artClassName={thumb ? "p-2" : "p-10"}
+        sizes={thumb ? "64px" : "(min-width: 768px) 45vw, 92vw"}
+        priority={!thumb}
+      />
+    );
   if (view === "swatch")
     return (
       <div className="absolute inset-0 bg-[linear-gradient(135deg,#efd2bf,#d9a98a)]">
@@ -82,7 +93,7 @@ export function ShadeSelector({ product, labels, children }: { product: Product;
             <ViewTransition name={`product-${product.slug}`} share="morph" default="none">
               <div className="absolute inset-0">
                 <div data-shade-art className="absolute inset-0" role="img" aria-label={`${product.name} · ${shade.name} · ${viewLabel[view]}`}>
-                  <GalleryImage view={view} product={product} hex={shade.hex} />
+                  <GalleryImage view={view} product={product} shade={shade} />
                 </div>
               </div>
             </ViewTransition>
@@ -98,7 +109,7 @@ export function ShadeSelector({ product, labels, children }: { product: Product;
               aria-label={viewLabel[v]}
               className={`relative h-16 w-16 overflow-hidden rounded-2xl bg-blush/60 transition-[box-shadow,transform] duration-300 ease-silk active:scale-95 ${view === v ? "ring-2 ring-rosewood ring-offset-2 ring-offset-ivory" : "ring-1 ring-rosewood/10"}`}
             >
-              <GalleryImage view={v} product={product} hex={shade.hex} thumb />
+              <GalleryImage view={v} product={product} shade={shade} thumb />
             </button>
           ))}
         </div>

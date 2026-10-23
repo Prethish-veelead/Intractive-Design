@@ -1,13 +1,16 @@
+import Image from "next/image";
 import type { Dictionary, Locale } from "@/lib/i18n";
 import { ButtonLink } from "@/components/ui/Button";
 import { Container, Eyebrow } from "@/components/ui/Section";
 import { ProductArt } from "@/components/ui/ProductArt";
 import { ShadeSwatch } from "@/components/ui/ShadeSwatch";
+import { findImage } from "@/lib/images";
 
 const heroShades = ["#c46a73", "#b5654a", "#7d2f45", "#c48d7d", "#b3262f", "#e08a8f"];
 
 export function Hero({ lang, dict }: { lang: Locale; dict: Dictionary }) {
   const t = dict.home;
+  const heroPhoto = findImage("lifestyle/hero");
   return (
     <section className="relative overflow-hidden pb-16 pt-10 md:pb-32 md:pt-16">
       <div aria-hidden className="pointer-events-none absolute -right-56 -top-56 h-[48rem] w-[48rem] rounded-full bg-[radial-gradient(closest-side,rgb(243_220_214/0.75),transparent)]" />
@@ -31,7 +34,11 @@ export function Hero({ lang, dict }: { lang: Locale; dict: Dictionary }) {
           <div className="rounded-[2.5rem] bg-white/50 p-2 ring-1 ring-rosewood/5 shadow-soft">
             <div className="relative aspect-square overflow-hidden rounded-[calc(2.5rem-0.5rem)] md:aspect-[4/5] bg-[radial-gradient(120%_90%_at_70%_20%,#f8e7e2_0%,#efcfc7_45%,#e4b5ab_100%)]">
               <div data-hero-image className="absolute inset-0">
-                <ProductArt kind="lipstick" color="#c46a73" className="absolute inset-x-0 bottom-0 mx-auto h-[88%] w-auto" />
+                {heroPhoto ? (
+                  <Image src={heroPhoto} alt={t.heroTitle.replace("\n", " ")} fill priority sizes="(min-width: 768px) 50vw, 92vw" className="object-cover" />
+                ) : (
+                  <ProductArt kind="lipstick" color="#c46a73" className="absolute inset-x-0 bottom-0 mx-auto h-[88%] w-auto" />
+                )}
               </div>
             </div>
           </div>

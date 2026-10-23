@@ -1,3 +1,5 @@
+import { findImage, toSlug } from "./images";
+
 // Sample catalog. The real commerce backend (open decision #2) replaces the functions at
 // the bottom of this file; components only use those functions and the types.
 // Ingredients and reviews are SAMPLE DATA (see project-info/docs/brand-voice.md#content-status).
@@ -13,7 +15,8 @@ export type Finish = "matte" | "satin" | "glossy" | "dewy" | "natural" | "shimme
 export type Feature = "longWear" | "waterproof" | "oilControl" | "spf" | "transferProof";
 export type ShadeFamily = "nude" | "pink" | "red" | "berry" | "coral" | "brown" | "black";
 
-export type Shade = { name: string; hex: string; family: ShadeFamily };
+/** `image` is the packshot photo for this shade, when one exists in public/images. */
+export type Shade = { name: string; hex: string; family: ShadeFamily; image?: string };
 
 export type Review = { name: string; city: string; rating: number; text: Localized };
 
@@ -418,22 +421,29 @@ const products: Product[] = [
   },
 ];
 
+// Attach packshot photos found in public/images/products/<slug>/<shade>.webp.
+const withImages = (p: Product): Product => ({
+  ...p,
+  shades: p.shades.map((s) => ({ ...s, image: findImage(`products/${p.slug}/${toSlug(s.name)}`) })),
+});
+
 export async function getProducts(category?: CategorySlug): Promise<Product[]> {
-  return category ? products.filter((p) => p.category === category) : products;
+  return (category ? products.filter((p) => p.category === category) : products).map(withImages);
 }
 
 export async function getProduct(slug: string): Promise<Product | undefined> {
-  return products.find((p) => p.slug === slug);
+  const product = products.find((p) => p.slug === slug);
+  return product && withImages(product);
 }
 
 export async function getBestsellers(): Promise<Product[]> {
   const featured = products.filter((p) => p.badge === "bestseller");
-  return [...featured, ...products.filter((p) => !featured.includes(p))].slice(0, 8);
+  return [...featured, ...products.filter((p) => !featured.includes(p))].slice(0, 8).map(withImages);
 }
 
 /** "Complete the look": up to 3 products from other categories, bestsellers first. */
 export async function getCompleteTheLook(product: Product): Promise<Product[]> {
-  const others = (await getBestsellers()).concat(products).filter((p) => p.category !== product.category && p.category !== "sets");
+  const others = (await getBestsellers()).concat(await getProducts()).filter((p) => p.category !== product.category && p.category !== "sets");
   return [...new Map(others.map((p) => [p.category, p])).values()].slice(0, 3);
 }
 

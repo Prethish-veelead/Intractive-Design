@@ -60,7 +60,11 @@ Goal: every page filled with real (or realistic) Thai and English content.
 - [x] 3.1 Brand voice guide: Thai and English tone, words to use and avoid → [brand-voice.md](brand-voice.md)
 - [x] 3.2 Home page copy (Thai + English): hero, categories, best sellers, story, journal, reviews, LINE sign-up (draft Thai, see 3.12)
 - [x] 3.3 Product content for all 12 products: description, how to use, ingredients (sample), claims, finish, benefits, shade families, rating, reviews (sample), Thai FDA (อย.) field
-- [ ] 3.4 Images: product photos, shade swatches on 3+ skin tones, lifestyle and model photos. ⛔ Needs the photoshoot; SVG placeholders in use (product, on-skin and texture views)
+- [ ] 3.4 Images: product photos, shade swatches on 3+ skin tones, lifestyle and model photos
+  - [x] Site picks up photos automatically from `public/images/` (falls back to SVG per missing image), tested
+  - [x] AI image brief for Antigravity: 30 packshots + 10 lifestyle photos → [image-generation-brief.md](../design/image-generation-brief.md)
+  - [ ] Antigravity generates the 40 images
+  - [ ] ⛔ Before launch: packshots replaced with photos of the real products
 - [x] 3.5 Category pages with filters (finish, shade family, benefits, price) and sorting. Skin-type filter skipped: no product data for it yet
 - [x] 3.6 Product page complete: 3-view gallery, swatches, delivery estimate, details/how to use/ingredients, reviews, "complete the look"
 - [x] 3.7 Shade finder quiz: skin tone → undertone → lip finish → cushion, lip and blush picks (rules in `src/lib/shade-finder.ts`)

@@ -3,10 +3,11 @@ import { ViewTransition } from "react";
 import type { Product } from "@/lib/catalog";
 import type { Dictionary, Locale } from "@/lib/i18n";
 import { Price } from "./Price";
-import { ProductArt } from "./ProductArt";
+import { ProductVisual } from "./ProductVisual";
 import { ShadeSwatch } from "./ShadeSwatch";
 
 const MAX_SWATCHES = 5;
+const CARD_SIZES = "(min-width: 768px) 25vw, 70vw";
 
 export function ProductCard({ product, lang, dict }: { product: Product; lang: Locale; dict: Dictionary }) {
   const { shades } = product;
@@ -27,13 +28,11 @@ export function ProductCard({ product, lang, dict }: { product: Product; lang: L
           {/* Named so the image morphs into the product page gallery (task-plan 2.12). */}
           <ViewTransition name={`product-${product.slug}`} share="morph" default="none">
             <div className="absolute inset-0 transition-transform duration-700 ease-silk group-hover:scale-[1.04]">
-              <ProductArt kind={product.kind} color={shades[0].hex} className="absolute inset-0 h-full w-full p-6" />
+              <ProductVisual kind={product.kind} shade={shades[0]} alt={`${product.name} ${shades[0].name}`} sizes={CARD_SIZES} />
               {hoverShade && (
-                <ProductArt
-                  kind={product.kind}
-                  color={hoverShade.hex}
-                  className="absolute inset-0 h-full w-full p-6 opacity-0 transition-opacity duration-500 ease-silk group-hover:opacity-100"
-                />
+                <div className="absolute inset-0 opacity-0 transition-opacity duration-500 ease-silk group-hover:opacity-100">
+                  <ProductVisual kind={product.kind} shade={hoverShade} alt="" sizes={CARD_SIZES} />
+                </div>
               )}
             </div>
           </ViewTransition>

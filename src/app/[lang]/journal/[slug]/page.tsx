@@ -8,6 +8,7 @@ import { getDictionary, hasLocale } from "@/lib/i18n";
 import { Container, Eyebrow, SectionHeading } from "@/components/ui/Section";
 import { ProductCard } from "@/components/ui/ProductCard";
 import { SmoothScroll } from "@/components/motion/SmoothScroll";
+import { JournalCover } from "@/components/sections/JournalCard";
 
 export function generateStaticParams() {
   return articles.map((a) => ({ slug: a.slug }));
@@ -41,7 +42,9 @@ export default async function ArticlePage({ params }: PageProps<"/[lang]/journal
             <p className="mt-6 text-lg text-ink/70">{article.excerpt[lang]}</p>
           </header>
           <div data-reveal className="mt-12 rounded-[2.5rem] bg-white/50 p-2 ring-1 ring-rosewood/5">
-            <div className={`aspect-[16/9] rounded-[calc(2.5rem-0.5rem)] bg-gradient-to-br md:aspect-[21/9] ${article.cover}`} />
+            <div className="relative aspect-[16/9] overflow-hidden rounded-[calc(2.5rem-0.5rem)] md:aspect-[21/9]">
+              <JournalCover article={article} sizes="(min-width: 1152px) 1152px, 92vw" priority />
+            </div>
           </div>
           <div className="mx-auto mt-14 max-w-2xl space-y-12 pb-8">
             {article.sections.map((s) => (

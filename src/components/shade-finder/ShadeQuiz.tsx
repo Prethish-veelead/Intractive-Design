@@ -7,7 +7,7 @@ import type { Product } from "@/lib/catalog";
 import type { Dictionary, Locale } from "@/lib/i18n";
 import { recommend, type Answers, type LipFinish, type SkinTone, type Undertone } from "@/lib/shade-finder";
 import { duration, ease, gsap, motionOk, useGSAP } from "@/lib/motion";
-import { ProductArt } from "@/components/ui/ProductArt";
+import { ProductVisual } from "@/components/ui/ProductVisual";
 
 type Props = {
   lang: Locale;
@@ -149,8 +149,8 @@ function Results({ lang, labels, products, answers }: { lang: Locale; labels: Di
             <li key={pick.role}>
               <Link href={`/${lang}/product/${product.slug}`} className="group flex h-full flex-col rounded-3xl bg-blush/40 p-5 ring-1 ring-rosewood/5 transition-[transform,box-shadow] duration-500 ease-silk hover:-translate-y-1 hover:shadow-lift">
                 <span className="eyebrow text-[10px] text-rose">{roleLabel[pick.role]}</span>
-                <span className="relative my-4 block aspect-square">
-                  <ProductArt kind={product.kind} color={shade.hex} className="absolute inset-0 h-full w-full" />
+                <span className="relative my-4 block aspect-square overflow-hidden rounded-2xl">
+                  <ProductVisual kind={product.kind} shade={shade} alt={`${product.name} ${shade.name}`} artClassName="" sizes="(min-width: 768px) 30vw, 85vw" />
                 </span>
                 <span className="font-display text-xl text-ink">{product.name}</span>
                 <span className="mt-1 flex items-center justify-between text-sm text-ink/70">
