@@ -25,6 +25,7 @@ export function Reviews({ dict }: { dict: Dictionary }) {
             </li>
           ))}
         </ul>
+        <p className="mt-6 text-xs text-ink/50">{t.reviewsSample}</p>
       </Container>
     </section>
   );

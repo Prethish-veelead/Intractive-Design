@@ -32,6 +32,7 @@ export function Header({ lang, nav, categories }: Props) {
 
   const menuLinks = [
     ...shopLinks.map((c) => ({ href: `/${lang}/shop/${c}`, label: categories[c] })),
+    { href: `/${lang}/gifts`, label: nav.gifts },
     { href: `/${lang}/shade-finder`, label: nav.shadeFinder },
     { href: `/${lang}/journal`, label: nav.journal },
     { href: `/${lang}/about`, label: nav.about },

@@ -2,6 +2,7 @@
 
 import { useRef } from "react";
 import { Draggable, gsap, useGSAP } from "@/lib/motion";
+import { SwatchStroke } from "@/components/ui/ShadeViews";
 
 type Props = { shadeHex: string; title: string; hint: string; leftLabel: string; rightLabel: string };
 
@@ -96,15 +97,7 @@ export function CompareSlider({ shadeHex, title, hint, leftLabel, rightLabel }: 
 function SkinPanel({ background, shadeHex, label, labelSide }: { background: string; shadeHex: string; label: string; labelSide: "left" | "right" }) {
   return (
     <div className="absolute inset-0" style={{ background }}>
-      {/* Brush-stroke swatch; multiply lets the skin tone show through like real pigment. */}
-      <svg viewBox="0 0 320 180" className="absolute inset-0 h-full w-full" preserveAspectRatio="xMidYMid slice" aria-hidden>
-        <path
-          d="M28 112 C 70 70, 130 64, 180 78 S 270 98, 296 70 L 300 92 C 268 126, 210 118, 170 108 S 80 104, 34 138 Z"
-          fill={shadeHex}
-          opacity="0.92"
-          style={{ mixBlendMode: "multiply" }}
-        />
-      </svg>
+      <SwatchStroke hex={shadeHex} className="absolute inset-0 h-full w-full" />
       <span className={`absolute top-3 rounded-full bg-ivory/80 px-2.5 py-1 text-[11px] text-ink/80 ${labelSide === "left" ? "left-3" : "right-3"}`}>
         {label}
       </span>

@@ -50,20 +50,6 @@
     "storyCta": "Read our story",
     "journalEyebrow": "Beauty journal",
     "journalTitle": "Tips and looks",
-    "journal": [
-      {
-        "title": "A waterproof Songkran look that lasts all day",
-        "tag": "How-to"
-      },
-      {
-        "title": "Choosing a lip shade for your undertone",
-        "tag": "Tips"
-      },
-      {
-        "title": "An easy winged liner in three steps",
-        "tag": "How-to"
-      }
-    ],
     "reviewsEyebrow": "Reviews",
     "reviewsTitle": "From women who wear it",
     "reviews": [
@@ -88,7 +74,8 @@
     "lineText": "Get offers first, track your orders and ask our team about shades, every day.",
     "lineCta": "Add friend",
     "prev": "Previous",
-    "next": "Next"
+    "next": "Next",
+    "reviewsSample": "Sample reviews, to be replaced with real customer reviews before launch"
   },
   "product": {
     "shade": "Shade",
@@ -103,7 +90,18 @@
     "compareTitle": "See the shade on two skin tones",
     "compareHint": "Drag to compare",
     "skinFair": "Fair skin",
-    "skinDeep": "Tan skin"
+    "skinDeep": "Tan skin",
+    "details": "Details",
+    "howTo": "How to use",
+    "ingredients": "Ingredients",
+    "ingredientsSample": "Sample data, awaiting supplier information",
+    "reviews": "Reviews",
+    "reviewsCount": "reviews",
+    "completeLook": "Complete the look",
+    "viewProduct": "Product",
+    "viewSwatch": "On skin",
+    "viewTexture": "Texture",
+    "galleryLabel": "Choose image"
   },
   "category": {
     "products": "products"
@@ -125,5 +123,125 @@
   },
   "line": {
     "chat": "Chat with us on LINE"
+  },
+  "filters": {
+    "title": "Filters",
+    "finish": "Finish",
+    "shadeFamily": "Shade family",
+    "features": "Benefits",
+    "price": "Price",
+    "sort": "Sort by",
+    "clear": "Clear filters",
+    "show": "Show",
+    "results": "items",
+    "noResults": "No products match these filters. Try selecting fewer.",
+    "sortFeatured": "Featured",
+    "sortPriceLow": "Price: low to high",
+    "sortPriceHigh": "Price: high to low",
+    "sortRating": "Top rated",
+    "priceUnder500": "Under ฿500",
+    "price500to1000": "฿500 – ฿1,000",
+    "priceOver1000": "Over ฿1,000",
+    "finishes": {
+      "matte": "Matte",
+      "satin": "Satin",
+      "glossy": "Glossy",
+      "dewy": "Dewy",
+      "natural": "Natural",
+      "shimmer": "Shimmer"
+    },
+    "featureNames": {
+      "longWear": "Long-wear",
+      "waterproof": "Waterproof",
+      "oilControl": "Oil control",
+      "spf": "SPF",
+      "transferProof": "Transfer-proof"
+    },
+    "families": {
+      "nude": "Nude",
+      "pink": "Pink",
+      "red": "Red",
+      "berry": "Berry",
+      "coral": "Coral/orange",
+      "brown": "Brown",
+      "black": "Black"
+    }
+  },
+  "notFound": {
+    "title": "Page not found",
+    "text": "Sorry, the page you are looking for may have moved or is not open yet.",
+    "cta": "Back to home"
+  },
+  "pages": {
+    "draftOwner": "Draft: the policies on this page await the brand owner's approval",
+    "draftLegal": "Draft: must be reviewed by a lawyer before going live",
+    "onThisPage": "On this page"
+  },
+  "journal": {
+    "eyebrow": "Beauty journal",
+    "title": "Tips, looks and how-tos",
+    "intro": "Makeup techniques that really work for Thai skin and Thai weather.",
+    "read": "Read more",
+    "minutes": "min",
+    "shopTheLook": "Shop the look",
+    "back": "Back to the journal"
+  },
+  "contact": {
+    "eyebrow": "Contact us",
+    "title": "Talk to us any day",
+    "intro": "Our team replies to every message the same day, 9am–9pm, seven days a week.",
+    "line": "LINE Official Account",
+    "lineText": "The fastest way to reach us. Ask about shades or track an order.",
+    "facebook": "Facebook Messenger",
+    "facebookText": "Message us through our page",
+    "email": "Email",
+    "emailText": "For general questions and partnerships",
+    "phone": "Phone",
+    "phoneText": "Monday–Friday, 9am–6pm",
+    "open": "Open"
+  },
+  "gifts": {
+    "eyebrow": "Gift sets",
+    "title": "Gifts she will love",
+    "intro": "Gift-boxed makeup sets and easy-to-choose bestsellers for birthdays, Valentine's Day and New Year.",
+    "sets": "Gift sets",
+    "under500": "Gifts under ฿500",
+    "wrapTitle": "Free gift wrapping",
+    "wrapText": "Add gift wrapping and a message card to any order at checkout, free."
+  },
+  "shadeFinder": {
+    "eyebrow": "Shade finder",
+    "title": "Your shades in three questions",
+    "intro": "Answer three quick questions and we'll suggest the cushion, lip and blush shades that suit you best.",
+    "step": "Question",
+    "of": "of",
+    "back": "Back",
+    "restart": "Start again",
+    "resultTitle": "Your shades",
+    "resultIntro": "Start with these shades. Not sure? Send us a photo on LINE and our team will help.",
+    "q1": "Which is closest to your skin tone?",
+    "q2": "What is your undertone?",
+    "q2hint": "Look at the veins on your wrist in daylight",
+    "q3": "Which lip finish do you prefer?",
+    "tones": {
+      "fair": "Fair",
+      "light": "Light",
+      "medium": "Medium",
+      "tan": "Tan",
+      "deep": "Deep"
+    },
+    "undertones": {
+      "warm": "Warm: greenish veins, gold suits you",
+      "cool": "Cool: purple or blue veins, silver suits you",
+      "neutral": "Neutral: can't tell, both gold and silver suit you"
+    },
+    "finishes": {
+      "matte": "Matte, long-wear",
+      "satin": "Satin, hydrating",
+      "glossy": "Glossy"
+    },
+    "base": "Cushion",
+    "lips": "Lips",
+    "cheeks": "Blush"
   }
 }

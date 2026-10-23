@@ -26,7 +26,14 @@ src/
   components/ui/         buttons, swatches, price, product card (no data fetching)
   components/sections/   home page sections (hero, best sellers, ...)
   components/product/    product page parts
+  components/shop/       category filters
+  components/shade-finder/  shade quiz
+  components/motion/     animation components (reveals, carousel, compare slider, parallax)
+  content/               long-form bilingual content: journal articles, About/Help/legal pages
   lib/catalog.ts         product data: the ONLY place that knows where products come from
+  lib/shade-finder.ts    shade quiz rules
+  lib/motion.ts          GSAP setup and motion tokens
+  lib/bag.ts             temporary in-memory bag (replaced in Task 4)
   lib/i18n.ts            locales and dictionary loading
   lib/format.ts          currency (฿) and date (Buddhist Era) formatting
   lib/site.ts            brand placeholders, LINE URL, free-shipping threshold

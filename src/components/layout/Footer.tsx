@@ -27,7 +27,16 @@ export function Footer({ lang, dict }: { lang: Locale; dict: Dictionary }) {
           <p className="font-display text-4xl tracking-[0.18em]">{site.brand}</p>
           <p className="mt-4 max-w-xs text-sm text-ivory/70">{f.tagline}</p>
         </div>
-        <FooterList title={f.shop} links={categories.map((c) => ({ href: `shop/${c}`, label: dict.categories[c] }))} lang={lang} />
+        <FooterList
+          title={f.shop}
+          links={[
+            ...categories.map((c) => ({ href: `shop/${c}`, label: dict.categories[c] })),
+            { href: "gifts", label: dict.nav.gifts },
+            { href: "shade-finder", label: dict.nav.shadeFinder },
+            { href: "journal", label: dict.nav.journal },
+          ]}
+          lang={lang}
+        />
         <FooterList title={f.help} links={help} lang={lang} />
         <div className="md:col-span-3">
           <p className="eyebrow text-[11px] text-ivory/50">{f.payWith}</p>

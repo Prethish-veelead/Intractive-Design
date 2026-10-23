@@ -4,6 +4,7 @@ import { categories, getProducts, isCategory } from "@/lib/catalog";
 import { getDictionary, hasLocale } from "@/lib/i18n";
 import { Container, Eyebrow } from "@/components/ui/Section";
 import { ProductCard } from "@/components/ui/ProductCard";
+import { ProductFilters } from "@/components/shop/ProductFilters";
 
 export function generateStaticParams() {
   return categories.map((category) => ({ category }));
@@ -23,16 +24,22 @@ export default async function CategoryPage({ params }: PageProps<"/[lang]/shop/[
 
   return (
     <Container className="pb-24 pt-14 md:pt-20">
-      <header className="mb-12 md:mb-16">
+      <header data-reveal className="mb-10 md:mb-14">
         <Eyebrow>{products.length} {dict.category.products}</Eyebrow>
         <h1 className="mt-4 font-display text-5xl text-rosewood md:text-7xl">{dict.categories[category]}</h1>
       </header>
-      {/* Filters and sorting arrive in task-plan 3.5. */}
-      <ul className="grid grid-cols-2 gap-x-4 gap-y-10 md:grid-cols-3 md:gap-x-6 lg:grid-cols-4">
-        {products.map((p) => (
-          <li key={p.slug} data-reveal><ProductCard product={p} lang={lang} dict={dict} /></li>
-        ))}
-      </ul>
+      <ProductFilters
+        labels={dict.filters}
+        items={products.map((p) => ({
+          slug: p.slug,
+          price: p.price,
+          rating: p.rating,
+          finish: p.finish,
+          features: p.features,
+          families: [...new Set(p.shades.map((s) => s.family))],
+        }))}
+        cards={Object.fromEntries(products.map((p) => [p.slug, <ProductCard key={p.slug} product={p} lang={lang} dict={dict} />]))}
+      />
     </Container>
   );
 }

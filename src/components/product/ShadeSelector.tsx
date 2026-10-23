@@ -8,6 +8,7 @@ import { duration, ease, gsap, motionOk, useGSAP } from "@/lib/motion";
 import { ProductArt } from "@/components/ui/ProductArt";
 import { ShadeSwatch } from "@/components/ui/ShadeSwatch";
 import { CompareSlider } from "@/components/motion/CompareSlider";
+import { SwatchStroke, TextureView } from "@/components/ui/ShadeViews";
 
 export type ShadeSelectorLabels = {
   shade: string;
@@ -18,18 +19,39 @@ export type ShadeSelectorLabels = {
   compareHint: string;
   skinFair: string;
   skinDeep: string;
+  galleryLabel: string;
+  viewProduct: string;
+  viewSwatch: string;
+  viewTexture: string;
 };
 
 const ADDED_FEEDBACK_MS = 1600;
+
+type View = "product" | "swatch" | "texture";
+const views: View[] = ["product", "swatch", "texture"];
+
+// Gallery "photos" drawn in the active shade until the photoshoot (task-plan 3.4).
+function GalleryImage({ view, product, hex, thumb = false }: { view: View; product: Product; hex: string; thumb?: boolean }) {
+  if (view === "product") return <ProductArt kind={product.kind} color={hex} className={`absolute inset-0 h-full w-full ${thumb ? "p-2" : "p-10"}`} />;
+  if (view === "swatch")
+    return (
+      <div className="absolute inset-0 bg-[linear-gradient(135deg,#efd2bf,#d9a98a)]">
+        <SwatchStroke hex={hex} className="absolute inset-0 h-full w-full" />
+      </div>
+    );
+  return <TextureView hex={hex} className={`absolute inset-0 h-full w-full ${thumb ? "p-1" : "p-12"}`} />;
+}
 
 /** Product gallery + shade picker. The picked shade recolors the product image. */
 export function ShadeSelector({ product, labels, children }: { product: Product; labels: ShadeSelectorLabels; children: React.ReactNode }) {
   const root = useRef<HTMLDivElement>(null);
   const [active, setActive] = useState(0);
+  const [view, setView] = useState<View>("product");
   const [added, setAdded] = useState(false);
   const shade = product.shades[active];
+  const viewLabel: Record<View, string> = { product: labels.viewProduct, swatch: labels.viewSwatch, texture: labels.viewTexture };
 
-  // Soft settle of the product image whenever the shade changes (skipped on first render).
+  // Soft settle of the main image whenever the shade or view changes (skipped on first render).
   const firstRender = useRef(true);
   useGSAP(
     () => {
@@ -40,7 +62,7 @@ export function ShadeSelector({ product, labels, children }: { product: Product;
       if (!window.matchMedia(motionOk).matches) return;
       gsap.fromTo("[data-shade-art]", { opacity: 0.5, scale: 0.97 }, { opacity: 1, scale: 1, duration: duration.reveal, ease: ease.silk });
     },
-    { scope: root, dependencies: [active] },
+    { scope: root, dependencies: [active, view] },
   );
 
   const onAdd = () => {
@@ -51,18 +73,34 @@ export function ShadeSelector({ product, labels, children }: { product: Product;
 
   return (
     <div ref={root} className="grid gap-10 md:grid-cols-2 md:gap-16">
-      <div className="rounded-[2.5rem] bg-white/50 p-2 ring-1 ring-rosewood/5 shadow-soft md:sticky md:top-24 md:self-start">
-        <div className="relative aspect-square overflow-hidden rounded-[calc(2.5rem-0.5rem)] bg-[radial-gradient(110%_90%_at_60%_20%,#f8e7e2_0%,#efcfc7_55%,#e4b5ab_100%)]">
-          {labels.badge && (
-            <span className="eyebrow absolute left-5 top-5 z-10 rounded-full bg-ivory/85 px-3 py-1 text-[10px] font-medium text-rosewood">{labels.badge}</span>
-          )}
-          <ViewTransition name={`product-${product.slug}`} share="morph" default="none">
-            <div className="absolute inset-0">
-              <div data-shade-art className="absolute inset-0">
-                <ProductArt kind={product.kind} color={shade.hex} className="absolute inset-0 h-full w-full p-10" />
+      <div className="md:sticky md:top-24 md:self-start">
+        <div className="rounded-[2.5rem] bg-white/50 p-2 ring-1 ring-rosewood/5 shadow-soft">
+          <div className="relative aspect-square overflow-hidden rounded-[calc(2.5rem-0.5rem)] bg-[radial-gradient(110%_90%_at_60%_20%,#f8e7e2_0%,#efcfc7_55%,#e4b5ab_100%)]">
+            {labels.badge && (
+              <span className="eyebrow absolute left-5 top-5 z-10 rounded-full bg-ivory/85 px-3 py-1 text-[10px] font-medium text-rosewood">{labels.badge}</span>
+            )}
+            <ViewTransition name={`product-${product.slug}`} share="morph" default="none">
+              <div className="absolute inset-0">
+                <div data-shade-art className="absolute inset-0" role="img" aria-label={`${product.name} · ${shade.name} · ${viewLabel[view]}`}>
+                  <GalleryImage view={view} product={product} hex={shade.hex} />
+                </div>
               </div>
-            </div>
-          </ViewTransition>
+            </ViewTransition>
+          </div>
+        </div>
+        <div role="group" aria-label={labels.galleryLabel} className="mt-4 flex gap-3">
+          {views.map((v) => (
+            <button
+              key={v}
+              type="button"
+              onClick={() => setView(v)}
+              aria-pressed={view === v}
+              aria-label={viewLabel[v]}
+              className={`relative h-16 w-16 overflow-hidden rounded-2xl bg-blush/60 transition-[box-shadow,transform] duration-300 ease-silk active:scale-95 ${view === v ? "ring-2 ring-rosewood ring-offset-2 ring-offset-ivory" : "ring-1 ring-rosewood/10"}`}
+            >
+              <GalleryImage view={v} product={product} hex={shade.hex} thumb />
+            </button>
+          ))}
         </div>
       </div>
 

@@ -57,18 +57,18 @@ Goal: the "wow" layer, soft and elegant, following [design-and-motion.md](../../
 
 Goal: every page filled with real (or realistic) Thai and English content.
 
-- [ ] 3.1 Brand voice guide: Thai and English tone, words to use and avoid
-- [ ] 3.2 Home page copy (Thai + English): hero, categories, best sellers, story, tutorials, reviews, LINE sign-up
-- [ ] 3.3 Product content per item: name, shades, description, how to use, ingredients, claims, Thai FDA (อย.) number field
-- [ ] 3.4 Images: product photos, shade swatches on 3+ skin tones, lifestyle and model photos (placeholders until the photoshoot)
-- [ ] 3.5 Category pages with filters (shade family, finish, skin type, price, long-wear/waterproof)
-- [ ] 3.6 Product page complete: gallery, swatches, delivery estimate, reviews, "complete the look"
-- [ ] 3.7 Shade finder quiz
-- [ ] 3.8 Gifts / sets page
-- [ ] 3.9 Beauty journal: 3 launch articles (e.g. Songkran waterproof look)
-- [ ] 3.10 About, Help (shipping, returns, payment, FAQ), Contact
-- [ ] 3.11 Legal: PDPA privacy notice, terms, cookie policy (reviewed by a lawyer)
-- [ ] 3.12 Native Thai speaker reviews all Thai copy
+- [x] 3.1 Brand voice guide: Thai and English tone, words to use and avoid → [brand-voice.md](brand-voice.md)
+- [x] 3.2 Home page copy (Thai + English): hero, categories, best sellers, story, journal, reviews, LINE sign-up (draft Thai, see 3.12)
+- [x] 3.3 Product content for all 12 products: description, how to use, ingredients (sample), claims, finish, benefits, shade families, rating, reviews (sample), Thai FDA (อย.) field
+- [ ] 3.4 Images: product photos, shade swatches on 3+ skin tones, lifestyle and model photos. ⛔ Needs the photoshoot; SVG placeholders in use (product, on-skin and texture views)
+- [x] 3.5 Category pages with filters (finish, shade family, benefits, price) and sorting. Skin-type filter skipped: no product data for it yet
+- [x] 3.6 Product page complete: 3-view gallery, swatches, delivery estimate, details/how to use/ingredients, reviews, "complete the look"
+- [x] 3.7 Shade finder quiz: skin tone → undertone → lip finish → cushion, lip and blush picks (rules in `src/lib/shade-finder.ts`)
+- [x] 3.8 Gifts / sets page with gift-wrap note and gifts under ฿500
+- [x] 3.9 Beauty journal: list page + 3 launch articles with "shop the look"
+- [x] 3.10 About, Help (shipping, returns, payment, FAQ), Contact. Help is marked draft until the owner confirms the policies
+- [ ] 3.11 Legal: PDPA privacy notice, terms, cookie policy. Drafts written and marked on-page; ⛔ needs a lawyer's review
+- [ ] 3.12 Native Thai speaker reviews all Thai copy ⛔ needs a native Thai copywriter
 - [ ] 3.13 Brand name and logo applied everywhere (replaces `[BRAND]`) ⛔ waiting for brand
 
 ## Task 4 — Shopping: bag, checkout and payments
