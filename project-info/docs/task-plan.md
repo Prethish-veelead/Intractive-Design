@@ -63,7 +63,8 @@ Goal: every page filled with real (or realistic) Thai and English content.
 - [ ] 3.4 Images: product photos, shade swatches on 3+ skin tones, lifestyle and model photos
   - [x] Site picks up photos automatically from `public/images/` (falls back to SVG per missing image), tested
   - [x] AI image brief for Antigravity: 30 packshots + 10 lifestyle photos → [image-generation-brief.md](../design/image-generation-brief.md)
-  - [ ] Antigravity generates the 40 images
+  - [x] Antigravity generates the 40 images (reviewed → [testing/images/results.md](../testing/images/results.md))
+  - [x] Redo 4 images with wrong shades: Chili Red, Peach Blossom, both eyeliners (re-checked, all match)
   - [ ] ⛔ Before launch: packshots replaced with photos of the real products
 - [x] 3.5 Category pages with filters (finish, shade family, benefits, price) and sorting. Skin-type filter skipped: no product data for it yet
 - [x] 3.6 Product page complete: 3-view gallery, swatches, delivery estimate, details/how to use/ingredients, reviews, "complete the look"

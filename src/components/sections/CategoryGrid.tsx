@@ -35,7 +35,7 @@ export function CategoryGrid({ lang, dict }: { lang: Locale; dict: Dictionary })
                         className="object-cover transition-transform duration-700 ease-silk group-hover:scale-105"
                       />
                       {/* Soft fade at the bottom keeps the label readable on any photo. */}
-                      <span aria-hidden className="absolute inset-x-0 bottom-0 h-2/5 bg-gradient-to-t from-ivory/90 to-transparent" />
+                      <span aria-hidden className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-ivory via-ivory/70 to-transparent" />
                     </>
                   ) : (
                     <ProductArt
