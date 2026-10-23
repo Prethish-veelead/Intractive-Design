@@ -4,6 +4,7 @@ import { ButtonLink } from "@/components/ui/Button";
 import { Container, Eyebrow } from "@/components/ui/Section";
 import { ProductArt } from "@/components/ui/ProductArt";
 import { PinnedParallax } from "@/components/motion/PinnedParallax";
+import { LeafShadow } from "@/components/ui/LeafShadow";
 import { findImage } from "@/lib/images";
 
 // Floating shade dots drifting in front of the image (depth = parallax speed).
@@ -17,8 +18,9 @@ export function BrandStory({ lang, dict }: { lang: Locale; dict: Dictionary }) {
   const t = dict.home;
   const storyPhoto = findImage("lifestyle/brand-story");
   return (
-    <PinnedParallax className="flex items-center py-16 md:min-h-[100dvh] md:py-24">
-      <Container className="grid items-center gap-14 md:grid-cols-12">
+    <PinnedParallax className="relative flex items-center overflow-hidden bg-ivory py-16 md:min-h-[100dvh] md:py-24">
+      <LeafShadow className="-inset-[6%]" />
+      <Container className="relative grid items-center gap-14 md:grid-cols-12">
         <div data-reveal className="relative md:col-span-5">
           <div className="rounded-[2.5rem] bg-white/50 p-2 ring-1 ring-rosewood/5">
             <div className="relative aspect-[4/3] overflow-hidden rounded-[calc(2.5rem-0.5rem)] md:aspect-[3/4] bg-gradient-to-b from-[#f3e6dc] to-[#e3c4a6]">

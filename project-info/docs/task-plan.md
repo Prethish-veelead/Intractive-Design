@@ -76,6 +76,18 @@ Goal: every page filled with real (or realistic) Thai and English content.
 - [ ] 3.12 Native Thai speaker reviews all Thai copy ⛔ needs a native Thai copywriter
 - [ ] 3.13 Brand name and logo applied everywhere (replaces `[BRAND]`) ⛔ waiting for brand
 
+## Polish round
+
+Goal: six small details that make the shop feel finished. Checked → [testing/polish/results.md](../testing/polish/results.md)
+
+- [x] P.1 Sticky "Add to bag" bar on phones (product page): slides up once the main button is scrolled past, same "✓ Added" feedback, its own LINE button (the floating one hides meanwhile)
+- [x] P.2 "Shop the look" hotspots on the home hero photo: lip corner → Velvet Kiss (Rose Petal), cheek → Petal Soft Blush (Sakura); card flips to stay on screen; opens on click/Enter only
+- [x] P.3 Payment methods as one quiet text line under Add to bag: PromptPay · TrueMoney · Rabbit LINE Pay · Visa · Mastercard (COD ⛔ open decision #5)
+- [x] P.4 Shade compare on three skin tones: fair on the left, medium or tan (radio group) on the right; not shown for cushion and powder
+- [x] P.5 Static morning leaf shadows on the brand story and the About header (pre-blurred texture, `scripts/make-leaf-shadow.mjs`)
+- [x] P.6 Slow "silk" gradient behind the hero (two drifting colour fields, no blur filter, paused off screen)
+- [x] P.7 Design review fixes: hover/silk/shadow colours as tokens, `skinTan` key, About heading without a lone "คุณ"
+
 ## Task 4 — Shopping: bag, checkout and payments
 
 - [ ] 4.1 Choose commerce backend ⛔ open decision #2

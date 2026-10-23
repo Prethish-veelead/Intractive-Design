@@ -25,7 +25,7 @@ export default async function Page({ params }: PageProps<"/[lang]/[page]">) {
   return (
     <>
       {page === "about" && <SmoothScroll />}
-      <ContentPageView page={contentPages[page]} lang={lang} dict={dict} />
+      <ContentPageView page={contentPages[page]} lang={lang} dict={dict} leafShadow={page === "about"} />
     </>
   );
 }

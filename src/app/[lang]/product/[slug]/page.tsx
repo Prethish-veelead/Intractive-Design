@@ -40,6 +40,7 @@ export default async function ProductPage({ params }: PageProps<"/[lang]/product
 
         <ShadeSelector
           product={product}
+          lang={lang}
           labels={{
             shade: t.shade,
             addToBag: t.addToBag,
@@ -47,8 +48,12 @@ export default async function ProductPage({ params }: PageProps<"/[lang]/product
             badge: product.badge ? dict.badges[product.badge] : undefined,
             compareTitle: t.compareTitle,
             compareHint: t.compareHint,
+            compareWith: t.compareWith,
             skinFair: t.skinFair,
-            skinDeep: t.skinDeep,
+            skinMedium: t.skinMedium,
+            skinTan: t.skinTan,
+            payWith: dict.footer.payWith,
+            lineChat: dict.line.chat,
             galleryLabel: t.galleryLabel,
             viewProduct: t.viewProduct,
             viewSwatch: t.viewSwatch,

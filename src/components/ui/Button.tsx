@@ -4,7 +4,7 @@ import { ArrowUpRight } from "@phosphor-icons/react/ssr";
 type Variant = "primary" | "secondary";
 
 const styles: Record<Variant, { shell: string; icon: string }> = {
-  primary: { shell: "bg-rosewood text-ivory hover:bg-[#4a2029]", icon: "bg-ivory/15" },
+  primary: { shell: "bg-rosewood text-ivory hover:bg-rosewood-deep", icon: "bg-ivory/15" },
   secondary: { shell: "bg-ivory/60 text-rosewood ring-1 ring-rosewood/20 hover:bg-blush/60", icon: "bg-rosewood/10" },
 };
 

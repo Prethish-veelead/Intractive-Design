@@ -1,9 +1,7 @@
 import Link from "next/link";
 import { categories } from "@/lib/catalog";
-import { site } from "@/lib/site";
+import { paymentMethods, site } from "@/lib/site";
 import type { Dictionary, Locale } from "@/lib/i18n";
-
-const payments = ["PromptPay", "TrueMoney", "Rabbit LINE Pay", "Visa", "Mastercard"];
 
 export function Footer({ lang, dict }: { lang: Locale; dict: Dictionary }) {
   const f = dict.footer;
@@ -41,7 +39,7 @@ export function Footer({ lang, dict }: { lang: Locale; dict: Dictionary }) {
         <div className="md:col-span-3">
           <p className="eyebrow text-[11px] text-ivory/50">{f.payWith}</p>
           <ul className="mt-4 flex flex-wrap gap-2">
-            {payments.map((p) => (
+            {paymentMethods.map((p) => (
               <li key={p} className="rounded-full px-3 py-1 text-xs text-ivory/80 ring-1 ring-ivory/20">{p}</li>
             ))}
           </ul>

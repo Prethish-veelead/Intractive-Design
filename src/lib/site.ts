@@ -7,3 +7,6 @@ export const site = {
   phone: "[PHONE]",
   freeShippingFrom: 590,
 } as const;
+
+// Shown as text pills (no logos). COD is left out until open decision #5 is settled.
+export const paymentMethods = ["PromptPay", "TrueMoney", "Rabbit LINE Pay", "Visa", "Mastercard"];

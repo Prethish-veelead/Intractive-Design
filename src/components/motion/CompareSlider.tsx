@@ -1,17 +1,44 @@
 "use client";
 
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { Draggable, gsap, useGSAP } from "@/lib/motion";
 import { SwatchStroke } from "@/components/ui/ShadeViews";
 
-type Props = { shadeHex: string; title: string; hint: string; leftLabel: string; rightLabel: string };
+type Tone = "medium" | "tan";
+type Props = {
+  shadeHex: string;
+  title: string;
+  hint: string;
+  /** Label of the tone picker for the right-hand side. */
+  compareWith: string;
+  labels: { fair: string; medium: string; tan: string };
+};
 
 // Placeholder skin tones until real swatch photos exist (task-plan 3.4).
 const fairSkin = "linear-gradient(135deg, #f4dccb, #e9c4ab)";
-const deepSkin = "linear-gradient(135deg, #a8724f, #7f4f35)";
+const rightSkins: Record<Tone, string> = {
+  medium: "linear-gradient(135deg, #d6a27c, #b98260)",
+  tan: "linear-gradient(135deg, #a8724f, #7f4f35)",
+};
+const tones: Tone[] = ["medium", "tan"];
 
-/** Shows the shade on two skin tones; drag the handle (or use arrow keys) to compare. */
-export function CompareSlider({ shadeHex, title, hint, leftLabel, rightLabel }: Props) {
+/**
+ * Shows the shade on three skin tones: fair on the left, medium or tan (picked above) on the
+ * right. Drag the handle (or use arrow keys) to compare.
+ */
+export function CompareSlider({ shadeHex, title, hint, compareWith, labels }: Props) {
+  const [tone, setTone] = useState<Tone>("medium");
+  const toneButtons = useRef<Partial<Record<Tone, HTMLButtonElement | null>>>({});
+
+  // Radio group keys: Left/Right (and Up/Down) move the choice and focus, wrapping around.
+  const onToneKey = (e: React.KeyboardEvent) => {
+    const step = ({ ArrowRight: 1, ArrowDown: 1, ArrowLeft: -1, ArrowUp: -1 } as Record<string, number>)[e.key];
+    if (step === undefined) return;
+    e.preventDefault();
+    const next = tones[(tones.indexOf(tone) + step + tones.length) % tones.length];
+    setTone(next);
+    toneButtons.current[next]?.focus();
+  };
   const box = useRef<HTMLDivElement>(null);
   const knob = useRef<HTMLDivElement>(null);
   const draggable = useRef<Draggable | null>(null);
@@ -60,15 +87,46 @@ export function CompareSlider({ shadeHex, title, hint, leftLabel, rightLabel }: 
 
   return (
     <div className="mt-10">
-      <p className="text-sm text-ink/70">{title}</p>
+      <div className="flex flex-wrap items-center gap-x-3 gap-y-2">
+        <p className="text-sm text-ink/70">{title}</p>
+        <div role="radiogroup" aria-label={compareWith} onKeyDown={onToneKey} className="flex rounded-full bg-blush/50 p-1 ring-1 ring-rosewood/5">
+          {tones.map((t) => (
+            <button
+              key={t}
+              ref={(el) => {
+                toneButtons.current[t] = el;
+              }}
+              type="button"
+              role="radio"
+              aria-checked={tone === t}
+              tabIndex={tone === t ? 0 : -1}
+              onClick={() => setTone(t)}
+              className={`flex min-h-11 items-center gap-2 rounded-full px-3.5 text-xs transition-[background-color,color,box-shadow] duration-300 ease-silk ${tone === t ? "bg-ivory text-rosewood shadow-soft" : "text-ink/70 hover:text-rosewood"}`}
+            >
+              <span aria-hidden className="h-3 w-3 rounded-full ring-1 ring-ink/10" style={{ background: rightSkins[t] }} />
+              {labels[t]}
+            </button>
+          ))}
+        </div>
+      </div>
       <div
         ref={box}
         className="relative mt-3 aspect-[16/9] select-none overflow-hidden rounded-3xl ring-1 ring-rosewood/10"
         style={{ "--pos": "50%" } as React.CSSProperties}
       >
-        <SkinPanel background={deepSkin} shadeHex={shadeHex} label={rightLabel} labelSide="right" />
+        {/* Both right-hand tones stay mounted so switching is a quick crossfade. */}
+        {tones.map((t) => (
+          <div
+            key={t}
+            data-tone={t}
+            aria-hidden={tone !== t}
+            className={`absolute inset-0 transition-opacity duration-300 ease-silk ${tone === t ? "opacity-100" : "opacity-0"}`}
+          >
+            <SkinPanel background={rightSkins[t]} shadeHex={shadeHex} label={labels[t]} labelSide="right" />
+          </div>
+        ))}
         <div className="absolute inset-0" style={{ clipPath: "inset(0 calc(100% - var(--pos)) 0 0)" }}>
-          <SkinPanel background={fairSkin} shadeHex={shadeHex} label={leftLabel} labelSide="left" />
+          <SkinPanel background={fairSkin} shadeHex={shadeHex} label={labels.fair} labelSide="left" />
         </div>
         <div
           ref={knob}

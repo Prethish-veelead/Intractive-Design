@@ -49,6 +49,7 @@ src/
 | `npm run dev` | Development server on http://localhost:3000 |
 | `npm run build` | Production build (also type-checks) |
 | `npm run lint` | ESLint |
+| `node scripts/make-leaf-shadow.mjs` | Rebuilds `public/images/textures/leaf-shadow.webp` (leaf shadows with the blur baked in, via `sharp`) |
 
 ## Performance budget (mobile, 4G, mid-range Android)
 

@@ -122,6 +122,88 @@ body {
   }
 }
 
+/* Phone sticky Add-to-bag bar (StickyAddBar): room at the page end, and the floating LINE
+   button steps aside while the bar is shown (the bar has its own LINE button).
+   Height = 0.75rem + 3rem button + 0.75rem. */
+.line-button {
+  transition-property: transform, translate, scale, opacity, visibility;
+}
+@media (max-width: 47.999rem) {
+  html[data-sticky-bar] body {
+    padding-bottom: calc(4.5rem + env(safe-area-inset-bottom));
+  }
+  html[data-sticky-bar="shown"] .line-button {
+    opacity: 0;
+    visibility: hidden;
+    transform: scale(0.85);
+  }
+}
+
+/* Hero "silk": two large soft colour fields drifting at different speeds so the loop never
+   shows. Gradients only (no blur filter). Paused while the hero is off screen (SilkBackground). */
+.silk {
+  position: absolute;
+  border-radius: 9999px;
+  pointer-events: none;
+}
+.silk-a {
+  background: radial-gradient(closest-side, color-mix(in srgb, var(--color-blush) 75%, transparent), transparent);
+}
+.silk-b {
+  background: radial-gradient(closest-side, color-mix(in srgb, var(--color-peach) 40%, transparent), transparent);
+}
+[data-paused] .silk {
+  animation-play-state: paused;
+}
+
+/* Morning leaf shadows: a pre-blurred, static image (scripts/make-leaf-shadow.mjs), multiplied in. */
+.leaf-shadow {
+  position: absolute;
+  pointer-events: none;
+  background-size: cover;
+  /* Tall phone boxes crop the sides: keep the top-right branch, the texture's strongest part. */
+  background-position: 85% 15%;
+  mix-blend-mode: multiply;
+  opacity: 0.1;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .silk-a {
+    animation: silk-a 21s ease-in-out infinite alternate;
+  }
+  .silk-b {
+    animation: silk-b 25s ease-in-out -7s infinite alternate;
+  }
+  /* Shop-the-look hotspots fade in after the hero intro; the ring breathes three times, then rests. */
+  [data-hotspot] {
+    animation: hero-fade 0.6s var(--ease-silk) 0.8s both;
+  }
+  [data-hotspot-ring] {
+    animation: hotspot-pulse 3.2s cubic-bezier(0.22, 1, 0.36, 1) 1.4s 3 both;
+  }
+}
+@keyframes silk-a {
+  to {
+    transform: translate3d(-6%, 5%, 0) scale(1.08);
+  }
+}
+@keyframes silk-b {
+  to {
+    transform: translate3d(8%, -4%, 0) scale(0.92);
+  }
+}
+@keyframes hotspot-pulse {
+  from {
+    transform: scale(1);
+    opacity: 0.6;
+  }
+  70%,
+  to {
+    transform: scale(2.4);
+    opacity: 0;
+  }
+}
+
 /* View transitions: product image morphs from card to product page. */
 ::view-transition {
   pointer-events: none;

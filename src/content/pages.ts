@@ -18,7 +18,8 @@ export type ContentPage = {
 const about: ContentPage = {
   slug: "about",
   eyebrow: { th: "เรื่องราวของเรา", en: "Our story" },
-  title: { th: "ความงามที่ออกแบบมาเพื่อคุณ", en: "Beauty designed around you" },
+  // U+2060 word joiner keeps "เพื่อคุณ" together so "คุณ" never sits alone on the last line.
+  title: { th: "ความงามที่ออกแบบมาเพื่อ\u2060คุณ", en: "Beauty designed around you" },
   intro: {
     th: "เราเริ่มต้นจากคำถามง่าย ๆ ว่า ทำไมเครื่องสำอางส่วนใหญ่ถึงไม่ได้ออกแบบมาเพื่อผิวและอากาศของเมืองไทย",
     en: "We started with a simple question: why is so little makeup designed for Thai skin and Thai weather?",

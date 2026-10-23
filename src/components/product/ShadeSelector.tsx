@@ -3,12 +3,15 @@
 import { useRef, useState, ViewTransition } from "react";
 import { Check } from "@phosphor-icons/react";
 import type { Product, Shade } from "@/lib/catalog";
+import type { Locale } from "@/lib/i18n";
 import { addToBag } from "@/lib/bag";
+import { paymentMethods } from "@/lib/site";
 import { duration, ease, gsap, motionOk, useGSAP } from "@/lib/motion";
 import { ProductVisual } from "@/components/ui/ProductVisual";
 import { ShadeSwatch } from "@/components/ui/ShadeSwatch";
 import { CompareSlider } from "@/components/motion/CompareSlider";
 import { SwatchStroke, TextureView } from "@/components/ui/ShadeViews";
+import { StickyAddBar } from "@/components/product/StickyAddBar";
 
 export type ShadeSelectorLabels = {
   shade: string;
@@ -17,8 +20,12 @@ export type ShadeSelectorLabels = {
   badge?: string;
   compareTitle: string;
   compareHint: string;
+  compareWith: string;
   skinFair: string;
-  skinDeep: string;
+  skinMedium: string;
+  skinTan: string;
+  payWith: string;
+  lineChat: string;
   galleryLabel: string;
   viewProduct: string;
   viewSwatch: string;
@@ -26,6 +33,7 @@ export type ShadeSelectorLabels = {
 };
 
 const ADDED_FEEDBACK_MS = 1600;
+const noCompareKinds: Product["kind"][] = ["cushion", "powder"];
 
 type View = "product" | "swatch" | "texture";
 const views: View[] = ["product", "swatch", "texture"];
@@ -54,8 +62,9 @@ function GalleryImage({ view, product, shade, thumb = false }: { view: View; pro
 }
 
 /** Product gallery + shade picker. The picked shade recolors the product image. */
-export function ShadeSelector({ product, labels, children }: { product: Product; labels: ShadeSelectorLabels; children: React.ReactNode }) {
+export function ShadeSelector({ product, lang, labels, children }: { product: Product; lang: Locale; labels: ShadeSelectorLabels; children: React.ReactNode }) {
   const root = useRef<HTMLDivElement>(null);
+  const addButton = useRef<HTMLButtonElement>(null);
   const [active, setActive] = useState(0);
   const [view, setView] = useState<View>("product");
   const [added, setAdded] = useState(false);
@@ -81,6 +90,21 @@ export function ShadeSelector({ product, labels, children }: { product: Product;
     setAdded(true);
     setTimeout(() => setAdded(false), ADDED_FEEDBACK_MS);
   };
+
+  // Shared by the main button and the phone sticky bar, so both show the same feedback.
+  const addLabel = (
+    <>
+      <span className={`flex items-center justify-center transition-[transform,opacity] duration-400 ease-silk ${added ? "-translate-y-6 opacity-0" : ""}`}>
+        {labels.addToBag}
+      </span>
+      <span
+        aria-hidden={!added}
+        className={`absolute inset-0 flex items-center justify-center gap-2 transition-[transform,opacity] duration-400 ease-silk ${added ? "" : "translate-y-6 opacity-0"}`}
+      >
+        <Check size={18} weight="bold" /> {labels.added}
+      </span>
+    </>
+  );
 
   return (
     <div ref={root} className="grid gap-10 md:grid-cols-2 md:gap-16">
@@ -142,29 +166,36 @@ export function ShadeSelector({ product, labels, children }: { product: Product;
 
         {/* Bag drawer and checkout arrive in task-plan 4.3. */}
         <button
+          ref={addButton}
           type="button"
           onClick={onAdd}
-          className="relative mt-10 min-h-14 w-full overflow-hidden rounded-full bg-rosewood text-sm font-medium text-ivory transition-[background-color,transform] duration-500 ease-press hover:bg-[#4a2029] active:scale-[0.98]"
+          className="relative mt-10 min-h-14 w-full overflow-hidden rounded-full bg-rosewood text-sm font-medium text-ivory transition-[background-color,transform] duration-500 ease-press hover:bg-rosewood-deep active:scale-[0.98]"
         >
-          <span className={`flex items-center justify-center transition-[transform,opacity] duration-400 ease-silk ${added ? "-translate-y-6 opacity-0" : ""}`}>
-            {labels.addToBag}
-          </span>
-          <span
-            aria-hidden={!added}
-            className={`absolute inset-0 flex items-center justify-center gap-2 transition-[transform,opacity] duration-400 ease-silk ${added ? "" : "translate-y-6 opacity-0"}`}
-          >
-            <Check size={18} weight="bold" /> {labels.added}
-          </span>
+          {addLabel}
         </button>
         <p role="status" className="sr-only">{added ? labels.added : ""}</p>
+        {/* Plain text, not pills: nothing here is tappable. Names never break mid-word. */}
+        <p data-pay-with className="mt-4 text-xs leading-relaxed text-ink/70">
+          {labels.payWith}{" "}
+          {paymentMethods.map((p, i) => (
+            <span key={p}>
+              {i > 0 && " · "}
+              <span className="whitespace-nowrap">{p}</span>
+            </span>
+          ))}
+        </p>
+        <StickyAddBar target={addButton} shade={shade} price={product.price} lang={lang} lineLabel={labels.lineChat} onAdd={onAdd}>
+          {addLabel}
+        </StickyAddBar>
 
-        {product.shades.length > 1 && (
+        {/* Not for base products: one foundation shade on every skin tone would mislead (the shade finder matches base). */}
+        {product.shades.length > 1 && !noCompareKinds.includes(product.kind) && (
           <CompareSlider
             shadeHex={shade.hex}
             title={labels.compareTitle}
             hint={labels.compareHint}
-            leftLabel={labels.skinFair}
-            rightLabel={labels.skinDeep}
+            compareWith={labels.compareWith}
+            labels={{ fair: labels.skinFair, medium: labels.skinMedium, tan: labels.skinTan }}
           />
         )}
       </div>
