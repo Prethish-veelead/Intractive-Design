@@ -147,10 +147,12 @@ body {
   pointer-events: none;
 }
 .silk-a {
-  background: radial-gradient(closest-side, color-mix(in srgb, var(--color-blush) 75%, transparent), transparent);
+  background: radial-gradient(closest-side, var(--color-blush), transparent);
 }
+/* A touch of rose gives the second field enough depth to read against ivory. */
 .silk-b {
-  background: radial-gradient(closest-side, color-mix(in srgb, var(--color-peach) 40%, transparent), transparent);
+  background: radial-gradient(closest-side, color-mix(in srgb, var(--color-rose) 22%, var(--color-peach)), transparent);
+  opacity: 0.75;
 }
 [data-paused] .silk {
   animation-play-state: paused;
@@ -164,15 +166,15 @@ body {
   /* Tall phone boxes crop the sides: keep the top-right branch, the texture's strongest part. */
   background-position: 85% 15%;
   mix-blend-mode: multiply;
-  opacity: 0.1;
+  opacity: 0.16;
 }
 
 @media (prefers-reduced-motion: no-preference) {
   .silk-a {
-    animation: silk-a 21s ease-in-out infinite alternate;
+    animation: silk-a 16s ease-in-out infinite alternate;
   }
   .silk-b {
-    animation: silk-b 25s ease-in-out -7s infinite alternate;
+    animation: silk-b 19s ease-in-out -7s infinite alternate;
   }
   /* Shop-the-look hotspots fade in after the hero intro; the ring breathes three times, then rests. */
   [data-hotspot] {
@@ -184,12 +186,12 @@ body {
 }
 @keyframes silk-a {
   to {
-    transform: translate3d(-6%, 5%, 0) scale(1.08);
+    transform: translate3d(-14%, 10%, 0) scale(1.15);
   }
 }
 @keyframes silk-b {
   to {
-    transform: translate3d(8%, -4%, 0) scale(0.92);
+    transform: translate3d(16%, -10%, 0) scale(0.88);
   }
 }
 @keyframes hotspot-pulse {
