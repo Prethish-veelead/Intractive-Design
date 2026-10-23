@@ -35,17 +35,119 @@ body {
   letter-spacing: 0;
 }
 
-/* Paper grain: fixed and non-interactive so it never repaints while scrolling. */
+/* Paper grain: a pre-made PNG tile (an SVG noise filter here cost ~30 dropped frames per
+   scroll at 4x CPU throttling). Own compositor layer so scrolling never repaints it. */
 .grain {
   position: fixed;
   inset: 0;
   z-index: 60;
   pointer-events: none;
   opacity: 0.035;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-image: url("/grain.png");
+  transform: translateZ(0);
+}
+
+/* Start state for scroll reveals (RevealRoot). Only applied when JS runs (html.js, set before
+   paint) and motion is allowed, so content is never hidden for no-JS or reduced-motion visitors. */
+@media (prefers-reduced-motion: no-preference) {
+  .js [data-reveal] {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+
+  /* Hero intro is pure CSS so it starts on first paint instead of waiting for hydration
+     (with JS-driven start states, LCP was ~5s at 4x CPU throttling). */
+  .hero-line > span {
+    animation: hero-rise 0.9s var(--ease-silk) both;
+  }
+  .hero-line:nth-child(2) > span {
+    animation-delay: 0.12s;
+  }
+  .hero-line:nth-child(3) > span {
+    animation-delay: 0.24s;
+  }
+  [data-hero-fade] {
+    animation: hero-fade 0.6s var(--ease-silk) 0.45s both;
+  }
+  [data-hero-image] {
+    animation: hero-settle 1.2s var(--ease-silk) both;
+  }
+}
+@keyframes hero-rise {
+  from {
+    transform: translateY(105%);
+  }
+}
+@keyframes hero-fade {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+}
+@keyframes hero-settle {
+  from {
+    transform: scale(1.05);
+  }
+}
+.hero-line {
+  display: block;
+  overflow: clip;
+  /* room for Thai marks above and below the line inside the mask */
+  padding-block: 0.08em;
+}
+.hero-line > span {
+  display: block;
+}
+
+/* Gold shimmer: one sweep when the element is revealed (rules: max once per view). */
+.shimmer {
+  position: relative;
+  overflow: hidden;
+}
+.shimmer::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(100deg, transparent 30%, rgb(255 244 214 / 0.75) 50%, transparent 70%);
+  transform: translateX(-120%);
+  pointer-events: none;
+}
+.is-revealed .shimmer::after,
+.shimmer.is-revealed::after {
+  animation: shimmer 1.6s var(--ease-silk) 0.3s 1 both;
+}
+@keyframes shimmer {
+  to {
+    transform: translateX(120%);
+  }
+}
+
+/* View transitions: product image morphs from card to product page. */
+::view-transition {
+  pointer-events: none;
+}
+::view-transition-group(.morph) {
+  animation-duration: 450ms;
+  animation-timing-function: var(--ease-silk);
+}
+::view-transition-group(site-header) {
+  animation: none;
+  z-index: 100;
+}
+::view-transition-old(site-header) {
+  display: none;
+}
+::view-transition-new(site-header) {
+  animation: none;
 }
 
 @media (prefers-reduced-motion: reduce) {
+  ::view-transition-old(*),
+  ::view-transition-new(*),
+  ::view-transition-group(*) {
+    animation-duration: 0s !important;
+    animation-delay: 0s !important;
+  }
   *,
   ::before,
   ::after {

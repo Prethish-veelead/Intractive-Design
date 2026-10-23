@@ -9,10 +9,10 @@ export function ShadeFinderTeaser({ lang, dict }: { lang: Locale; dict: Dictiona
   return (
     <section className="py-12 md:py-16">
       <Container>
-        <div className="rounded-[2.5rem] bg-rosewood/10 p-2">
+        <div data-reveal className="rounded-[2.5rem] bg-rosewood/10 p-2">
           <div className="grid gap-10 overflow-hidden rounded-[calc(2.5rem-0.5rem)] bg-rosewood px-6 py-14 text-ivory md:grid-cols-2 md:px-14 md:py-20">
             <div>
-              <span className="eyebrow inline-block rounded-full bg-ivory/10 px-3 py-1 text-[10px] font-medium text-champagne">{t.shadeEyebrow}</span>
+              <span className="shimmer eyebrow inline-block rounded-full bg-ivory/10 px-3 py-1 text-[10px] font-medium text-champagne">{t.shadeEyebrow}</span>
               <h2 className="mt-5 font-display text-4xl md:text-5xl">{t.shadeTitle}</h2>
               <p className="mt-5 max-w-md text-ivory/75">{t.shadeText}</p>
               <div className="mt-9">

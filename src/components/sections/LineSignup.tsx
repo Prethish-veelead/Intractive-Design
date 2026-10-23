@@ -8,7 +8,7 @@ export function LineSignup({ dict }: { dict: Dictionary }) {
   return (
     <section className="py-16 md:py-32">
       <Container>
-        <div className="mx-auto max-w-3xl rounded-[2.5rem] bg-white/50 p-2 ring-1 ring-rosewood/5 shadow-soft">
+        <div data-reveal className="mx-auto max-w-3xl rounded-[2.5rem] bg-white/50 p-2 ring-1 ring-rosewood/5 shadow-soft">
           <div className="rounded-[calc(2.5rem-0.5rem)] bg-gradient-to-br from-ivory to-blush/60 px-6 py-14 text-center md:px-16">
             <span className="eyebrow inline-block rounded-full bg-line/10 px-3 py-1 text-[10px] font-medium text-[#05893b]">{t.lineEyebrow}</span>
             <h2 className="mx-auto mt-5 max-w-lg font-display text-4xl text-rosewood md:text-5xl">{t.lineTitle}</h2>

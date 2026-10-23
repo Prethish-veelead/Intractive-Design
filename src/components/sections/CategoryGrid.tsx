@@ -20,7 +20,7 @@ export function CategoryGrid({ lang, dict }: { lang: Locale; dict: Dictionary })
         <SectionHeading eyebrow={dict.home.categoriesEyebrow} title={dict.home.categoriesTitle} />
         <ul className="grid grid-cols-2 gap-4 md:grid-cols-12 md:grid-rows-2 md:gap-5">
           {tiles.map((tile) => (
-            <li key={tile.slug} className={`${tile.slug === "lips" ? "col-span-2" : ""} ${tile.span}`}>
+            <li key={tile.slug} data-reveal className={`${tile.slug === "lips" ? "col-span-2" : ""} ${tile.span}`}>
               <Link href={`/${lang}/shop/${tile.slug}`} className="group block h-full rounded-card bg-white/50 p-1.5 ring-1 ring-rosewood/5">
                 <div className={`relative flex h-full min-h-48 flex-col justify-end overflow-hidden rounded-card-inner bg-gradient-to-br p-5 md:min-h-56 ${tile.bg}`}>
                   <ProductArt

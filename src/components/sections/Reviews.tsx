@@ -10,7 +10,7 @@ export function Reviews({ dict }: { dict: Dictionary }) {
         <SectionHeading eyebrow={t.reviewsEyebrow} title={t.reviewsTitle} />
         <ul className="grid gap-5 md:grid-cols-3">
           {t.reviews.map((r) => (
-            <li key={r.name} className="rounded-card bg-white/50 p-1.5 ring-1 ring-rosewood/5">
+            <li key={r.name} data-reveal className="rounded-card bg-white/50 p-1.5 ring-1 ring-rosewood/5">
               <figure className="flex h-full flex-col justify-between gap-8 rounded-card-inner bg-ivory p-7">
                 <div>
                   <div className="flex gap-0.5 text-champagne" aria-label="5/5">

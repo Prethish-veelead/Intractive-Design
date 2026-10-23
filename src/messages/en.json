@@ -51,21 +51,44 @@
     "journalEyebrow": "Beauty journal",
     "journalTitle": "Tips and looks",
     "journal": [
-      { "title": "A waterproof Songkran look that lasts all day", "tag": "How-to" },
-      { "title": "Choosing a lip shade for your undertone", "tag": "Tips" },
-      { "title": "An easy winged liner in three steps", "tag": "How-to" }
+      {
+        "title": "A waterproof Songkran look that lasts all day",
+        "tag": "How-to"
+      },
+      {
+        "title": "Choosing a lip shade for your undertone",
+        "tag": "Tips"
+      },
+      {
+        "title": "An easy winged liner in three steps",
+        "tag": "How-to"
+      }
     ],
     "reviewsEyebrow": "Reviews",
     "reviewsTitle": "From women who wear it",
     "reviews": [
-      { "quote": "A matte lipstick that really doesn't dry my lips. On in the morning, still there in the evening.", "name": "Praew", "city": "Bangkok" },
-      { "quote": "The cushion is so light and doesn't get oily in the heat. The shade matches perfectly.", "name": "Mind", "city": "Chiang Mai" },
-      { "quote": "The eyeliner really is waterproof. A whole day of Songkran and no smudging.", "name": "Fah", "city": "Phuket" }
+      {
+        "quote": "A matte lipstick that really doesn't dry my lips. On in the morning, still there in the evening.",
+        "name": "Praew",
+        "city": "Bangkok"
+      },
+      {
+        "quote": "The cushion is so light and doesn't get oily in the heat. The shade matches perfectly.",
+        "name": "Mind",
+        "city": "Chiang Mai"
+      },
+      {
+        "quote": "The eyeliner really is waterproof. A whole day of Songkran and no smudging.",
+        "name": "Fah",
+        "city": "Phuket"
+      }
     ],
     "lineEyebrow": "LINE Official",
     "lineTitle": "Add us on LINE for 10% off",
     "lineText": "Get offers first, track your orders and ask our team about shades, every day.",
-    "lineCta": "Add friend"
+    "lineCta": "Add friend",
+    "prev": "Previous",
+    "next": "Next"
   },
   "product": {
     "shade": "Shade",
@@ -75,7 +98,12 @@
     "fda": "Thai FDA notification no.",
     "fdaPending": "Pending notification",
     "chatLine": "Ask about shades on LINE",
-    "shades": "shades"
+    "shades": "shades",
+    "added": "Added",
+    "compareTitle": "See the shade on two skin tones",
+    "compareHint": "Drag to compare",
+    "skinFair": "Fair skin",
+    "skinDeep": "Tan skin"
   },
   "category": {
     "products": "products"

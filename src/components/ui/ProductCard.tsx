@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { ViewTransition } from "react";
 import type { Product } from "@/lib/catalog";
 import type { Dictionary, Locale } from "@/lib/i18n";
 import { Price } from "./Price";
@@ -10,22 +11,32 @@ const MAX_SWATCHES = 5;
 export function ProductCard({ product, lang, dict }: { product: Product; lang: Locale; dict: Dictionary }) {
   const { shades } = product;
   const extra = shades.length - MAX_SWATCHES;
+  // Hover shows the product in its second shade (stands in for a second photo until the shoot).
+  const hoverShade = shades[1];
 
   return (
-    <Link href={`/${lang}/product/${product.slug}`} className="group block">
+    <Link href={`/${lang}/product/${product.slug}`} className="group block" draggable={false}>
       {/* Double bezel: soft outer tray, inner image core. */}
       <div className="rounded-card bg-white/50 p-1.5 ring-1 ring-rosewood/5 transition-[transform,box-shadow] duration-500 ease-silk group-hover:-translate-y-1 group-hover:shadow-lift">
         <div className="relative aspect-[4/5] overflow-hidden rounded-card-inner bg-gradient-to-b from-blush/50 to-blush">
           {product.badge && (
-            <span className="eyebrow absolute left-3 top-3 z-10 rounded-full bg-ivory/85 px-2.5 py-1 text-[9px] font-medium text-rosewood">
+            <span className={`eyebrow absolute left-3 top-3 z-10 rounded-full bg-ivory/85 px-2.5 py-1 text-[9px] font-medium text-rosewood ${product.badge === "limited" ? "shimmer" : ""}`}>
               {dict.badges[product.badge]}
             </span>
           )}
-          <ProductArt
-            kind={product.kind}
-            color={shades[0].hex}
-            className="absolute inset-0 h-full w-full p-6 transition-transform duration-700 ease-silk group-hover:scale-[1.04]"
-          />
+          {/* Named so the image morphs into the product page gallery (task-plan 2.12). */}
+          <ViewTransition name={`product-${product.slug}`} share="morph" default="none">
+            <div className="absolute inset-0 transition-transform duration-700 ease-silk group-hover:scale-[1.04]">
+              <ProductArt kind={product.kind} color={shades[0].hex} className="absolute inset-0 h-full w-full p-6" />
+              {hoverShade && (
+                <ProductArt
+                  kind={product.kind}
+                  color={hoverShade.hex}
+                  className="absolute inset-0 h-full w-full p-6 opacity-0 transition-opacity duration-500 ease-silk group-hover:opacity-100"
+                />
+              )}
+            </div>
+          </ViewTransition>
         </div>
       </div>
       <div className="px-1.5 pt-4">

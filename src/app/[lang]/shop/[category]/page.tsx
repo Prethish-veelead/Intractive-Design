@@ -30,7 +30,7 @@ export default async function CategoryPage({ params }: PageProps<"/[lang]/shop/[
       {/* Filters and sorting arrive in task-plan 3.5. */}
       <ul className="grid grid-cols-2 gap-x-4 gap-y-10 md:grid-cols-3 md:gap-x-6 lg:grid-cols-4">
         {products.map((p) => (
-          <li key={p.slug}><ProductCard product={p} lang={lang} dict={dict} /></li>
+          <li key={p.slug} data-reveal><ProductCard product={p} lang={lang} dict={dict} /></li>
         ))}
       </ul>
     </Container>

@@ -7,6 +7,7 @@ import { AnnouncementBar } from "@/components/layout/AnnouncementBar";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { LineButton } from "@/components/layout/LineButton";
+import { RevealRoot } from "@/components/motion/RevealRoot";
 import "../globals.css";
 
 // Latin and Thai faces are chained per role; the browser picks per character.
@@ -36,11 +37,15 @@ export default async function RootLayout({ children, params }: LayoutProps<"/[la
   const dict = await getDictionary(lang);
 
   return (
-    <html lang={lang} className={`${cormorant.variable} ${trirong.variable} ${dmSans.variable} ${plexThai.variable}`}>
+    // suppressHydrationWarning: the inline script adds the "js" class before React hydrates.
+    <html lang={lang} className={`${cormorant.variable} ${trirong.variable} ${dmSans.variable} ${plexThai.variable}`} suppressHydrationWarning>
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: "document.documentElement.classList.add('js')" }} />
+      </head>
       <body className="flex min-h-[100dvh] flex-col">
         <AnnouncementBar text={dict.announcement} />
         <Header lang={lang} nav={dict.nav} categories={dict.categories} />
-        <main className="flex-1">{children}</main>
+        <RevealRoot>{children}</RevealRoot>
         <Footer lang={lang} dict={dict} />
         <LineButton label={dict.line.chat} />
         <div className="grain" aria-hidden />

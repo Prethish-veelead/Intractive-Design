@@ -13,7 +13,7 @@ export function Eyebrow({ children }: { children: React.ReactNode }) {
 /** Section heading: eyebrow pill above a large serif title, optional action on the right. */
 export function SectionHeading({ eyebrow, title, action }: { eyebrow: string; title: string; action?: React.ReactNode }) {
   return (
-    <div className="mb-10 flex flex-col items-start gap-6 md:mb-14 md:flex-row md:items-end md:justify-between">
+    <div data-reveal className="mb-10 flex flex-col items-start gap-6 md:mb-14 md:flex-row md:items-end md:justify-between">
       <div>
         <Eyebrow>{eyebrow}</Eyebrow>
         <h2 className="mt-4 max-w-xl font-display text-4xl text-rosewood md:text-5xl">{title}</h2>

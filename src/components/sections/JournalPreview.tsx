@@ -13,7 +13,7 @@ export function JournalPreview({ lang, dict }: { lang: Locale; dict: Dictionary 
         <SectionHeading eyebrow={t.journalEyebrow} title={t.journalTitle} />
         <ul className="grid gap-8 md:grid-cols-3 md:gap-6">
           {t.journal.map((article, i) => (
-            <li key={article.title}>
+            <li key={article.title} data-reveal>
               <Link href={`/${lang}/journal`} className="group block">
                 <div className="rounded-card bg-white/50 p-1.5 ring-1 ring-rosewood/5">
                   <div className={`aspect-[4/3] rounded-card-inner bg-gradient-to-br transition-transform duration-700 ease-silk group-hover:scale-[0.98] ${tones[i % tones.length]}`} />

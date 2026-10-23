@@ -8,6 +8,7 @@ import { BrandStory } from "@/components/sections/BrandStory";
 import { JournalPreview } from "@/components/sections/JournalPreview";
 import { Reviews } from "@/components/sections/Reviews";
 import { LineSignup } from "@/components/sections/LineSignup";
+import { SmoothScroll } from "@/components/motion/SmoothScroll";
 
 export default async function HomePage({ params }: PageProps<"/[lang]">) {
   const { lang } = await params;
@@ -16,6 +17,7 @@ export default async function HomePage({ params }: PageProps<"/[lang]">) {
 
   return (
     <>
+      <SmoothScroll />
       <Hero lang={lang} dict={dict} />
       <CategoryGrid lang={lang} dict={dict} />
       <Bestsellers lang={lang} dict={dict} />

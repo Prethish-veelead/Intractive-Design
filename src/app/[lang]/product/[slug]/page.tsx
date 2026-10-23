@@ -37,7 +37,16 @@ export default async function ProductPage({ params }: PageProps<"/[lang]/product
 
       <ShadeSelector
         product={product}
-        labels={{ shade: t.shade, addToBag: t.addToBag, badge: product.badge ? dict.badges[product.badge] : undefined }}
+        labels={{
+          shade: t.shade,
+          addToBag: t.addToBag,
+          added: t.added,
+          badge: product.badge ? dict.badges[product.badge] : undefined,
+          compareTitle: t.compareTitle,
+          compareHint: t.compareHint,
+          skinFair: t.skinFair,
+          skinDeep: t.skinDeep,
+        }}
       >
         {/* Server-rendered details passed into the client selector's right column. */}
         <h1 className="font-display text-4xl leading-tight text-rosewood md:text-5xl">{product.name}</h1>

@@ -39,19 +39,19 @@ Goal: a running Thai/English website shell with the brand look (colors, fonts, l
 
 Goal: the "wow" layer, soft and elegant, following [design-and-motion.md](../../rules/design-and-motion.md).
 
-- [ ] 2.1 Motion setup: GSAP + ScrollTrigger + `useGSAP`, shared easing and duration tokens
-- [ ] 2.2 Lenis smooth scroll on Home, About and Journal only (off for shop, product, checkout)
-- [ ] 2.3 Hero intro: image soft fade and scale, headline words rise in with stagger (Thai-safe: split by words, not letters)
-- [ ] 2.4 Scroll reveals: sections and product cards fade up with stagger
-- [ ] 2.5 Product card hover: second image crossfade, soft lift
-- [ ] 2.6 Shade swatch: selected ring grows, product image changes shade
-- [ ] 2.7 Draggable best-seller carousel with inertia (GSAP Draggable), plus arrow buttons and keyboard support
-- [ ] 2.8 Drag-to-compare slider: "before / after" or "shade on two skin tones"
-- [ ] 2.9 Add-to-bag micro-interaction: button → check, bag icon pop, count update
-- [ ] 2.10 Brand-story section: pinned scroll with parallax images
-- [ ] 2.11 Gold shimmer detail on premium elements (once per view)
-- [ ] 2.12 Page transitions between product grid and product page (View Transitions)
-- [ ] 2.13 Verify: reduced-motion turns effects off; no dropped frames at 4× CPU throttling; no layout shift (CLS < 0.1)
+- [x] 2.1 Motion setup: GSAP + ScrollTrigger + Draggable + Inertia + `useGSAP` in `src/lib/motion.ts`, shared easing and duration tokens
+- [x] 2.2 Lenis smooth scroll on Home only so far (About and Journal get it when built in Task 3); off on touch devices
+- [x] 2.3 Hero intro: image settles from a slight zoom, headline lines rise out of masks (Thai-safe: lines from the text file). Pure CSS, so it does not delay LCP
+- [x] 2.4 Scroll reveals: headings, tiles, cards, reviews fade up with stagger (`data-reveal` + `RevealRoot`)
+- [x] 2.5 Product card hover: crossfade to the second shade (stands in for a second photo), soft lift
+- [x] 2.6 Shade swatch: selected ring grows, product image recolors with a soft settle
+- [x] 2.7 Draggable best-seller carousel with inertia and snap (GSAP Draggable), arrow buttons, keyboard focus support
+- [x] 2.8 Drag-to-compare slider: shade on fair vs tan skin (drag or arrow keys)
+- [x] 2.9 Add-to-bag micro-interaction: button → ✓ Added, bag icon pop, count update
+- [x] 2.10 Brand-story section: pinned scroll with parallax layers (desktop only)
+- [x] 2.11 Gold shimmer detail on premium elements (once per view)
+- [x] 2.12 Page transitions: product image morphs from card to product page (React `<ViewTransition>`), header stays still
+- [ ] 2.13 Verify: reduced-motion ✓, JS-off ✓, CLS ✓ (≤ 0.002), LCP ✓ (< 1.4 s at 4× CPU). ⚠ Some long frames remain on Home in GPU-less headless tests → confirm on a real phone in 5.3 → [testing/task-2/results.md](../testing/task-2/results.md)
 
 ## Task 3 — Content
 

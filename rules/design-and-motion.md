@@ -24,3 +24,9 @@ Source of truth for look and feel: [design-direction.md](../project-info/design/
 7. Every animation must have a reason: guide the eye, confirm an action, or show the product. Decoration alone is not a reason.
 8. Kill GSAP ScrollTriggers and Lenis on route change (no leaks).
 9. Test animations on a mid-range Android phone (or 4× CPU throttling). If it drops frames, simplify it.
+10. Above-the-fold intros are CSS animations, never JS-set start states. Waiting for hydration pushed LCP to 5 s.
+11. Scroll reveals use `data-reveal` (handled by `RevealRoot`); don't write a new reveal system per section.
+12. `backdrop-filter` only on small fixed elements, and only while visible. Never put `view-transition-name` on an
+    ancestor of a blurred element: it becomes a backdrop root and the blur stops working.
+13. No `filter: blur()` or SVG noise filters on large or scrolling areas; use gradients or image tiles.
+14. Import GSAP from `@/lib/motion` (plugins registered once there), not from `gsap` directly.
